@@ -1,6 +1,6 @@
 import axios from 'axios'
-import store from '@/store/index.js'
-import baseURL from './baseUrl'
+// import store from '@/store/index.js'
+import baseURL from './baseURL'
 import { message } from 'element-ui'
 
 const api = {}
@@ -13,9 +13,9 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function(config) {
     //请求头添加token
-    if (store.state.UserToken) {
-      config.headers.Authorization = store.state.UserToken
-    }
+    // if (store.state.UserToken) {
+    //   config.headers.Authorization = store.state.UserToken
+    // }
     return config
   },
   function(err) {

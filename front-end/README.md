@@ -1,19 +1,4 @@
-# front-end
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+路由权限业务
+  1.定义好全部路由地址
+  2.通过用户不同向后台请求不同的用户权限数据
+  3.对用户权限做对比: 请求数据 === 全部的路由  取出来作为路由配置

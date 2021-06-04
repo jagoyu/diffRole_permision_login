@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { login } from '../../api'
 export default {
   data() {
     return {
@@ -19,9 +20,16 @@ export default {
     }
   },
   methods: {
-    login() {
-      console.log('login');
+    async login() {
       //网络请求
+      let res = await login(this.account)
+      if (res.code === 0) {
+        let token = res.data.token
+        // token存储  -- 本地  -- vuex
+        this.$store.commit('LOGIN_IN',token)
+        this.$message.success(res.message)
+        this.$router.replace('/')
+      }
     }
   }
 }
