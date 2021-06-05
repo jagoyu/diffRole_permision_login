@@ -2,6 +2,7 @@ import { fetchPermission } from '../../api/index'
 import router,{ DynamicRoutes } from '../../router/index'
 import dynamicRouter from '../../router/dynamic-router'
 import { recursionRouter, setDefaultRoute } from '../../utils/recursion-router'
+const _ = require('lodash')
 
 export default {
   namespaced: true,
@@ -34,7 +35,8 @@ export default {
       }
       //筛选
       let routes = recursionRouter(permissionList, dynamicRouter)
-      let mainContainer = DynamicRoutes.find(v => v.path === '')
+      let cpDyna = _.cloneDeep(DynamicRoutes)
+      let mainContainer = cpDyna.find(v => v.path === '')
       let children = mainContainer.children 
       children.push(...routes)
 
@@ -44,8 +46,8 @@ export default {
       setDefaultRoute([mainContainer])
       //初始化路由
       let initialRoutes = router.options.routes
-      router.addRoutes(DynamicRoutes)
-      commit('SET_PERMISSION',[...initialRoutes, ...DynamicRoutes])
+      router.addRoutes(cpDyna)
+      commit('SET_PERMISSION',[...initialRoutes, ...cpDyna])
     }
   }
 }
