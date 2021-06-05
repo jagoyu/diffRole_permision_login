@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+
+import store from '../../../store/index'
 export default {
     data() {
       return {
@@ -40,20 +41,12 @@ export default {
         console.log(key, keyPath);
       },
       loginOut() {
-        this.$store.commit('LOGIN_OUT')
-        // this.CLEAR_PERIMISSION()
-        // this.CLEAR_MENU()
-        // this.$router.replace('/')
+        store.commit('LOGIN_OUT')
+        store.commit('permission/CLEAR_MENU')
+        store.commit('permission/CLEAR_PERMISSION')
+        this.$router.replace('/login')
       }
-    },
-    computed: {
-    //   ...mapMutations(
-    //     '../../../store/modules/index', [
-    //       'CLEAR_PERIMISSION',
-    //       'CLEAR_MENU'
-    //     ]
-    //   )
-    // }
+    }
 }
 </script>
 

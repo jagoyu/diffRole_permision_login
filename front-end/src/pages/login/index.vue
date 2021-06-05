@@ -1,9 +1,9 @@
 <template>
   <section class="parentCard">
     <el-card>
-      <el-form ref="form" :model="form" label-width="80px">
+      <el-form ref="form" :model="form" label-width="80px" @keyup.enter.native="login">
         <el-form-item label="用户名">
-          <el-input v-model.trim="form.account"></el-input>
+          <el-input v-model.trim="form.account" ></el-input>
         </el-form-item>
         <el-form-item label="密码">
           <el-input v-model.trim="form.password"></el-input>

@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '../pages/home'
 import Login from '../pages/login'
 import NotFound from '../pages/errorPage/404'
 import Forbidden from '../pages/errorPage/403'
+
 import Layout from '../pages/layout'
 
 Vue.use(VueRouter)
@@ -20,7 +22,6 @@ const routes = [
  * 根据用户权限不同，所能看到的页面和可操作性也不同
  * admin -> 所有页面都可以看到
  * vip -> 属于vip的权限
- * svip -> 更多vip权限
  */
 //动态加载路由
 export const DynamicRoutes = [
@@ -51,7 +52,7 @@ export const DynamicRoutes = [
     component: Forbidden
   },
   {
-    path: '/404',
+    path: '*',
     component: NotFound
   }
 ]

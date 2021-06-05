@@ -24,7 +24,6 @@ export function recursionRouter( userRouter = [], allRouter = []) {
   })
   return realRouter
 }
-
 export function setDefaultRoute(routes) {
   routes.forEach((v,i) => {
     if(v.children && v.children.length > 0) {
@@ -32,4 +31,13 @@ export function setDefaultRoute(routes) {
       setDefaultRoute(v.children)
     }
   })
+}
+
+//工具函数--树形结构遍历  [后续用到]
+export function treeForEach( tree, func ) {
+  let node, list = [...tree]
+  while (node = list.shift()) {
+    func(node)
+    node.children && list.push(...node.children)
+  }
 }
