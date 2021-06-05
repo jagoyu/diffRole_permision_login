@@ -1,6 +1,5 @@
 <template>
   <el-menu
-    :collapse="isSidebarNavCollapse"
     background-color="#304156"
     text-color="#eee"
     active-text-color="#4dbcff"
@@ -16,14 +15,18 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      isCollapse: true
     }
   },
   computed: {
-    ...mapState(['isSidebarNavCollapse']),
     ...mapState('permission', ['sidebarMenu', 'currentMenu'])
   },
-  methods: {},
+  methods: {
+    show() {
+      console.log(this.sidebarMenu);
+    }
+  },
+  mouted() {
+  },
   components: {
     DynamicMenu
   }

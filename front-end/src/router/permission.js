@@ -5,7 +5,6 @@ router.beforeEach((to,from,next) => {
   if (!store.state.UserToken) {
     //未登录 页面是否需要登录
     if (to.matched.length > 0 && !to.matched.some(record => record.meta.requiresAuth)) {
-      console.log(to);
       next()
     } else {
       next({

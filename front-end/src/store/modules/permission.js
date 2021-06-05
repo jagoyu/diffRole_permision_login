@@ -28,7 +28,11 @@ export default {
   //异步访问
   actions: {
     async FETCH_PERMISSION({ commit, state }) {
-      let permissionList = await fetchPermission().data
+      let permissionList = []
+      let res = await fetchPermission()
+      if (res.code === 0) {
+        permissionList = res.data
+      }
       //筛选
       let routes = recursionRouter(permissionList, dynamicRouter)
       let mainContainer = DynamicRoutes.find(v => v.path === '')
@@ -43,6 +47,7 @@ export default {
       //初始化路由
       let initialRoutes = router.options.routes
       router.addRoutes(DynamicRoutes)
+
       commit('SET_PERMISSION',[...initialRoutes, ...DynamicRoutes])
     }
   }
