@@ -1,4 +1,4 @@
-import { fetchPermission } from 'api'
+import { loginApi } from 'api'
 import router,{ DynamicRoutes } from 'router'
 import dynamicRouter from 'router/dynamic-router'
 import { setDefaultRoute, recursionRouterTree } from 'utils/recursion-router'
@@ -27,9 +27,9 @@ export default {
   },
   //异步访问
   actions: {
-    async FETCH_PERMISSION({ commit, state }) {
+    async FETCH_PERMISSION({ commit, rootState }) {
       let permissionList = []
-      let res = await fetchPermission()
+      let res = await loginApi.fetchPermission({UserToken: rootState.UserToken})
       if (res.code === 0) {
         permissionList = res.data
       }

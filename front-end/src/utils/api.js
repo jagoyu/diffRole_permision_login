@@ -1,32 +1,48 @@
 import axios from 'axios'
 // import store from '@/store/index.js'
-import baseURL from './baseURL'
-import { message } from 'element-ui'
+import BASE_URL from './baseURL'
 
-const api = {}
 
-const instance = axios.create({
-  timeout: 5000
-})
+
+const apiConfig = {
+  baseURL: '/api',
+  timeout: 6000,
+  responseType: 'json',
+  withCredentials: true,
+  headers: {
+    'content-type': 'application/x-www-form-urlencoded'
+  }
+}
+const service = axios.create(apiConfig)
+
+const apiConfigJson = {
+  baseURL: '/api',
+  timeout: 60000,
+  responseType: 'json',
+  withCredentials: true,
+  headers: {
+    'content-type': 'application/json'
+  }
+}
+const serviceJson = axios.create(apiConfigJson)
 
 //请求拦截
-instance.interceptors.request.use(
-  function(config) {
+service.interceptors.request.use(
+  config => {
     //请求头添加token
     // if (store.state.UserToken) {
     //   config.headers.Authorization = store.state.UserToken
     // }
     return config
   },
-  function(err) {
-    return Promise.reject(err)
+  err => {
+    console.log('Service Request Error',err);
+    Promise.reject(err)
   }
 )
-
 //响应拦截
-
-instance.interceptors.response.use(response => {
-  return response.data
+service.interceptors.response.use(response => {
+  return response
 },err => {
   if (err && err.response) {
     switch (err.response.status) {
@@ -44,4 +60,6 @@ instance.interceptors.response.use(response => {
     }
   }
 })
-export default instance
+
+
+export { service, serviceJson }

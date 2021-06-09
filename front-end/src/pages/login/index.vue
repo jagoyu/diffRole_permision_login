@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { login } from 'api'
+import { loginApi } from 'api'
 export default {
   data() {
     return {
@@ -30,9 +30,10 @@ export default {
   methods: {
     async login() {
       //网络请求
-      let res = await login(this.form.account)
+      let res = await loginApi.login(this.form)
       if (res.code === 0) {
         let token = res.data.token
+        console.log(token);
         // token存储  -- 本地  -- vuex
         this.$store.commit('LOGIN_IN',token)
         this.$message.success(res.message)

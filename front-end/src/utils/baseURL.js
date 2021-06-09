@@ -1,5 +1,5 @@
-const baseUrl = "http://localhost:3300"
-export default baseUrl
+const BASE_URL = "http://localhost:3300"
+export default BASE_URL
 
 
 
