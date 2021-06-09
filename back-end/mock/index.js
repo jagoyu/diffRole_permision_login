@@ -16,11 +16,16 @@ const vipPermission = require("./data/vip_permission.json")
 
 
 app.post("/login",(req,res) => {
-  const user = req.body.account
-  if(user === 'admin') {
+  const {account, password} = req.body
+  if(account === 'admin' && password === '123') {
     res.send(adminLogin)
-  } else{
+  } else if (account === 'user' && password === '666'){
     res.send(vipLogin)
+  } else {
+    res.send({
+      "code" : 1,
+      "ErrMes" : "账号或密码错误，请重新输入"
+    })
   }
 })
 
