@@ -1,4 +1,3 @@
-
 <template>
   <el-menu
     :default-active="activeIndex"
@@ -41,10 +40,10 @@ export default {
         console.log(key, keyPath);
       },
       loginOut() {
-        store.commit('LOGIN_OUT')
         store.commit('permission/CLEAR_MENU')
         store.commit('permission/CLEAR_PERMISSION')
-        this.$router.replace('/login')
+        store.commit('LOGIN_OUT')
+        this.$router.push('/login')
       }
     }
 }

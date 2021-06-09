@@ -1,7 +1,7 @@
-import { fetchPermission } from '../../api/index'
-import router,{ DynamicRoutes } from '../../router/index'
-import dynamicRouter from '../../router/dynamic-router'
-import { recursionRouter, setDefaultRoute } from '../../utils/recursion-router'
+import { fetchPermission } from 'api'
+import router,{ DynamicRoutes } from 'router'
+import dynamicRouter from 'router/dynamic-router'
+import { setDefaultRoute, recursionRouterTree } from 'utils/recursion-router'
 const _ = require('lodash')
 
 export default {
@@ -34,8 +34,12 @@ export default {
         permissionList = res.data
       }
       //筛选
-      let routes = recursionRouter(permissionList, dynamicRouter)
+      let cpdyna = _.cloneDeep(dynamicRouter)
+
+      let routes = recursionRouterTree(permissionList, cpdyna)
+
       let cpDyna = _.cloneDeep(DynamicRoutes)
+
       let mainContainer = cpDyna.find(v => v.path === '')
       let children = mainContainer.children 
       children.push(...routes)
@@ -47,6 +51,7 @@ export default {
       //初始化路由
       let initialRoutes = router.options.routes
       router.addRoutes(cpDyna)
+
       commit('SET_PERMISSION',[...initialRoutes, ...cpDyna])
     }
   }

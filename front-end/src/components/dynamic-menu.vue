@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-for="v in menuList">
+    <template v-for="v in menuList" v-if="v.meta.isBlock">
       <el-submenu :index="v.name" v-if="v.children && v.children.length > 0" :key="v.name">
         <template slot="title">
           <i class="iconfont" :class="v.meta.icon"></i>

@@ -1,15 +1,15 @@
 //订单管理
-const Order = () => import('../pages/order-manage')
-const OrderList = () => import('../pages/order-manage/order-list')
-const ProductManage = () => import('../pages/order-manage/product-manage')
-const ProductionList = () => import('../pages/order-manage/product-manage/production-list')
-const ReviewManage = () => import('../pages/order-manage/product-manage/review-manage')
-const ReturnGoods = () => import('../pages/order-manage/return-goods')
+const Order = () => import('pages/order-manage')
+const OrderList = () => import('pages/order-manage/order-list')
+const ProductManage = () => import('pages/order-manage/product-manage')
+const ProductionList = () => import('pages/order-manage/product-manage/production-list')
+const ReviewManage = () => import('pages/order-manage/product-manage/review-manage')
+const ReturnGoods = () => import('pages/order-manage/return-goods')
 
 // 产品管理
-const Goods = () => import('../pages/goods-manage')
-const GoodsList = () => import('../pages/goods-manage/goods-list')
-const GoodsClassify = () => import('../pages/goods-manage/goods-classify')
+const Goods = () => import('pages/goods-manage')
+const GoodsList = () => import('pages/goods-manage/goods-list')
+const GoodsClassify = () => import('pages/goods-manage/goods-classify')
 
 
 //需要判断权限的路由
@@ -20,7 +20,8 @@ const dynamicRoutes = [
     name: 'order-manage',
     meta: {
       name: '订单管理',
-      icon: 'icon-email'
+      icon: 'icon-email',
+      isBlock: false
     },
     children: [
       {
@@ -29,7 +30,8 @@ const dynamicRoutes = [
         component: OrderList,
         meta: {
           name: '订单列表',
-          icon: 'icon-quit'
+          icon: 'icon-quit',
+          isBlock: false
         }
       },
       {
@@ -38,7 +40,8 @@ const dynamicRoutes = [
         component: ProductManage,
         meta: {
           name: '生产管理',
-          icon: 'icon-service'
+          icon: 'icon-service',
+          isBlock: false
         },
         children: [
           {
@@ -47,7 +50,8 @@ const dynamicRoutes = [
             component: ProductionList,
             meta: {
               name: '生产列表',
-              icon: 'icon-nav'
+              icon: 'icon-nav',
+              isBlock: false  
             } 
           },
           {
@@ -56,7 +60,8 @@ const dynamicRoutes = [
             component: ReviewManage,
             meta: {
               name: '审核管理',
-              icon: 'icon-finance-manage'
+              icon: 'icon-finance-manage',
+              isBlock: false
             } 
           },
         ]
@@ -67,7 +72,8 @@ const dynamicRoutes = [
         component: ReturnGoods,
         meta: {
           name: '退货管理',
-          icon: 'icon-product-manage'
+          icon: 'icon-product-manage',
+          isBlock: false
         }
       }     
     ]
@@ -78,7 +84,8 @@ const dynamicRoutes = [
     name: 'goods',
     meta: {
       name: '产品管理',
-      icon: 'icon-order-manage'
+      icon: 'icon-order-manage',
+      isBlock: false
     },
     children: [
       {
@@ -87,7 +94,8 @@ const dynamicRoutes = [
         component: GoodsList,
         meta: {
           name: '产品列表',
-          icon: 'icon-home'
+          icon: 'icon-home',
+          isBlock: false
         }
       },
       {
@@ -96,7 +104,8 @@ const dynamicRoutes = [
         component: GoodsClassify,
         meta: {
           name: '产品分类',
-          icon: 'icon-product-manage'
+          icon: 'icon-product-manage',
+          isBlock: false
         }
       }
     ]

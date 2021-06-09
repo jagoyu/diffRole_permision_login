@@ -1,5 +1,5 @@
 import router from './index'
-import store from '../store/index'
+import store from 'store/index'
 
 router.beforeEach((to,from,next) => {
   if (!store.state.UserToken) {

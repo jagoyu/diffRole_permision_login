@@ -1,5 +1,5 @@
-import axios from '../utils/api'
-import store from '../store'
+import axios from 'utils/api'
+import store from 'store'
 export function fetchPermission() {
   return axios.get("/api/permission?user=" + store.state.UserToken)
 }

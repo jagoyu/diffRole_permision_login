@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { login } from '../../api'
+import { login } from 'api'
 export default {
   data() {
     return {
@@ -36,7 +36,7 @@ export default {
         // token存储  -- 本地  -- vuex
         this.$store.commit('LOGIN_IN',token)
         this.$message.success(res.message)
-        this.$router.replace('/')
+        this.$router.push('/')
       }
     }
   }

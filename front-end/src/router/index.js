@@ -1,14 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '../pages/home'
-import Login from '../pages/login'
-import NotFound from '../pages/errorPage/404'
-import Forbidden from '../pages/errorPage/403'
+import Home from 'pages/home'
+import Login from 'pages/login'
+import NotFound from 'pages/errorPage/404'
+import Forbidden from 'pages/errorPage/403'
 
-import Layout from '../pages/layout'
+import Layout from 'pages/layout'
 
 Vue.use(VueRouter)
+
+// 解决点击重复路由报错问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
 
 const routes = [
   {
@@ -31,8 +39,7 @@ export const DynamicRoutes = [
     name: 'container',
     redirect: 'home',
     meta: {
-      requiresAuth: true,
-      name: '首页'
+      requiresAuth: true
     },
     children: [
       {
@@ -42,7 +49,8 @@ export const DynamicRoutes = [
         meta: {
           //匹配规则
           name: '首页',
-          icon: 'icon-name'
+          icon: 'icon-name',
+          isBlock: true
         }
       }
     ]
@@ -62,5 +70,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 export default router
