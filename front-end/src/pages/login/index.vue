@@ -1,7 +1,7 @@
 <template>
   <section class="parentCard">
     <el-card>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px" @keyup.enter.native="login('form')">
         <el-form-item label="用户名" prop="account">
           <el-input v-model.trim="form.account" ></el-input>
         </el-form-item>
@@ -52,7 +52,6 @@ export default {
           }
           return true
         } else {
-          this.$message.error('请重新填写表单')
           return false
         }
       })
